@@ -6,6 +6,7 @@ class AuthState extends Equatable {
   final bool obscurePassword;
   final bool rememberMe;
   final String? errorMessage;
+  final String? userEmail;
 
   const AuthState({
     this.isLoading = false,
@@ -13,6 +14,7 @@ class AuthState extends Equatable {
     this.obscurePassword = true,
     this.rememberMe = false,
     this.errorMessage,
+    this.userEmail,
   });
 
   AuthState copyWith({
@@ -21,6 +23,7 @@ class AuthState extends Equatable {
     bool? obscurePassword,
     bool? rememberMe,
     String? errorMessage,
+    String? userEmail,
   }) {
     return AuthState(
       isLoading: isLoading ?? this.isLoading,
@@ -28,6 +31,7 @@ class AuthState extends Equatable {
       obscurePassword: obscurePassword ?? this.obscurePassword,
       rememberMe: rememberMe ?? this.rememberMe,
       errorMessage: errorMessage,
+      userEmail: userEmail ?? this.userEmail,
     );
   }
 
@@ -38,5 +42,6 @@ class AuthState extends Equatable {
     obscurePassword,
     rememberMe,
     errorMessage,
+    userEmail,
   ];
 }

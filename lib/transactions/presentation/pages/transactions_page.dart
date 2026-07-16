@@ -81,6 +81,7 @@ class _TransactionsPageState extends State<TransactionsPage> {
           ? AppBar(title: const Text('Transactions'))
           : null,
       floatingActionButton: FloatingActionButton.extended(
+        heroTag: 'fab_transactions',
         onPressed: () => _openForm(),
         icon: const Icon(Icons.add),
         label: const Text('Add'),

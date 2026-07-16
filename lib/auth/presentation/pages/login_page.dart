@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/routes/routes_name.dart';
 import '../cubit/ auth_cubit.dart';
 import '../cubit/auth_state.dart';
-import 'register_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -181,13 +181,8 @@ class _LoginPageState extends State<LoginPage> {
 
                         TextButton(
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) =>
-                                const RegisterPage(),
-                              ),
-                            );
+                            Navigator.pushNamed(
+                                context, RouteNames.register);
                           },
                           child: const Text("Register"),
                         ),

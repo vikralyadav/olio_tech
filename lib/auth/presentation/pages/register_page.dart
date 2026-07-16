@@ -38,8 +38,9 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
+      listenWhen: (prev, curr) => prev.isLoading && !curr.isLoading,
       listener: (context, state) {
-        if (!state.isLoading && state.errorMessage == null) {
+        if (state.errorMessage == null) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text("Registration Successful"),
@@ -47,9 +48,7 @@ class _RegisterPageState extends State<RegisterPage> {
           );
 
           Navigator.pop(context);
-        }
-
-        if (state.errorMessage != null) {
+        } else {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(state.errorMessage!),

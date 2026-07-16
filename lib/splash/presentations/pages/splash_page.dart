@@ -4,7 +4,6 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../../auth/presentation/cubit/ auth_cubit.dart';
 import '../../../auth/presentation/cubit/auth_state.dart';
-import '../cubit/splash_cubit.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
