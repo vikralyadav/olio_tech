@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
+import '../../../auth/presentation/cubit/ auth_cubit.dart';
+import '../../../auth/presentation/cubit/auth_state.dart';
 import '../cubit/splash_cubit.dart';
-import '../cubit/splash_state.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -35,9 +36,15 @@ class _SplashPageState extends State<SplashPage>
 
     _controller.forward();
 
+    Future.delayed(
+      const Duration(seconds: 2),
+          () {
+        context.read<AuthCubit>().checkLoginStatus();
+      },
+    );
     _loadVersion();
-
-    context.read<SplashCubit>().initialize();
+    //
+    // context.read<AuthCubit>().initialize();
   }
 
   Future<void> _loadVersion() async {
@@ -56,14 +63,26 @@ class _SplashPageState extends State<SplashPage>
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<SplashCubit, SplashStatus>(
+    return
+    BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
-        if (state == SplashStatus.authenticated) {
-          Navigator.pushReplacementNamed(context, "/home");
-        }
 
-        if (state == SplashStatus.unauthenticated) {
-          Navigator.pushReplacementNamed(context, "/login");
+        if (!state.isLoading) {
+
+          if (state.isAuthenticated) {
+
+            Navigator.pushReplacementNamed(
+              context,
+              "/home",
+            );
+
+          } else {
+
+            Navigator.pushReplacementNamed(
+              context,
+              "/login",
+            );
+          }
         }
       },
       child: Scaffold(
