@@ -238,7 +238,7 @@ class _CategoriesPage extends StatelessWidget {
           crossAxisCount: 2,
           crossAxisSpacing: 12,
           mainAxisSpacing: 12,
-          childAspectRatio: 2.6,
+          childAspectRatio: 2.2,
         ),
         itemCount: categories.length,
         itemBuilder: (context, index) {
@@ -255,6 +255,8 @@ class _CategoriesPage extends StatelessWidget {
                   const SizedBox(width: 10),
                   Expanded(
                     child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(c.name,
